@@ -1,0 +1,94 @@
+from win32com.client import Dispatch
+import webbrowser
+import random
+import pyaudio
+import datetime
+import speech_recognition as sr
+
+new = 2
+tabUrl = 'http://google.com?#q=';
+
+r = sr.Recognizer()
+
+s = Dispatch("SAPI.SpVoice")
+
+s.speak('Hi Aariv, this your virtual assistant jarvis')
+
+def greetMe():
+    currentH = int(datetime.datetime.now() .hour)
+    if currentH  >= 0 and currentH <12:
+        s.speak('Good morning')
+
+    if currentH >= 12 and currentH <18:
+        s.speak('Good afternoon')
+
+    if currentH >= 18 and currentH != 0:
+        s.speak('Good evening')
+
+greetMe()
+
+def myCommand():
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("listening....")
+        r.pause_threshold =  1
+        audio = r.listen(source)
+
+s.speak('what is my job to do')
+
+work = myCommand()
+
+s.speak('ok aariv')
+
+if  work == 'google':
+    webbrowser.open('www.google.com')
+
+elif work == 'hello' or 'hi':
+    results = ['i am all well','with no viruses',' i am amazingamazing','hi']
+    print(random.choice(results))
+elif work == 'youtube':
+    webbrowser.open('www.youtube.com')
+
+elif work == 'gmail':
+    webbrowser.open('www.gmail.com')
+    
+elif work == 'music':
+    webbrowser.open('https://www.youtube.com/watch?v=rykH1BkGwTo&list=RDMM&start_radio=1','https://www.youtube.com/watch?v=L4p-g3AprzU&list=RDL4p-g3AprzU&start_radio=1&t=13')
+    
+elif work == 'wikipedia':
+    webbrowser.open('https://en.wikipedia.org/wiki/Main_Page')
+
+elif work =='calculator':
+    webbrowser.open('https://www.google.com/search?sxsrf=ALeKk03qXeoIk7oECnE-jEHf9EqiZFuS9g:1588084799749&q=calculator&sa=X&ved=2ahUKEwj5p_LyrIvpAhWbQkEAHcvVDVAQ7xYoAHoECA4QJw&biw=1366&bih=657')
+
+elif work == 'show my homework':
+    webbrowser.open('https://www.satchelone.com/todos/issued')
+
+elif work == 'google classroom':
+    webbrowser.open('https://classroom.google.com/u/1/h')
+
+elif work =='mymaths':
+    webbrowser.open('https://www.mymaths.co.uk/')
+
+elif work =='mathswatch':
+    webbrowser.open('https://vle.mathswatch.co.uk/vle/browse/359')
+
+elif work =='duolingo':
+    webbrowser.open('https://stories.duolingo.com/')
+
+elif work =='game':
+    webbrowser.open('https://www.google.com/search?sxsrf=ALeKk03qVVc6KeCl1jxq5FYXIJxOEndIww:1588096948414&q=popular+google+doodle+games&oi=ddle&ct=153498627&hl=en-GB&sa=X&ved=0ahUKEwiT8ueT2ovpAhXByYUKHcopCrMQPQgP&biw=1366&bih=657&dpr=1')
+
+elif work =='pumps':
+    webbrowser.open('http://www.thepumps.in/')
+
+elif work =='maps':
+    webbrowser.open('https://www.google.co.uk/maps/@51.5675786,0.0588026,14z')
+
+if work =='play music':
+    music = input('what song')
+    webbrowser.open(tabUrl+music,new=new);
+
+else:
+    webbrowser.open(tabUrl+work,new=new);
